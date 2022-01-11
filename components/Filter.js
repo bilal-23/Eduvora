@@ -5,11 +5,11 @@ import { useState } from 'react';
 
 
 export default function Filter({ products, states, cities, allProducts }) {
-    const [productNames, setProductNames] = useState(products);
     const [IndianStates, setIndianStates] = useState([]);
     const [city, setCity] = useState([]);
     const [allProductsArray, setAllProductsArray] = useState(allProducts);
 
+    //Populate the state select options for the particular product
     function productSelectHandler(e) {
         const states = [];
         const sortedProducts = [];
@@ -22,7 +22,7 @@ export default function Filter({ products, states, cities, allProducts }) {
         })
         setIndianStates(states);
 
-
+        //updates the allProductArray so that it contains data of the currrent product only
         allProducts.forEach((item) => {
             if (item.product_name === e.target.value.trim()) {
                 sortedProducts.push(item)
@@ -31,6 +31,7 @@ export default function Filter({ products, states, cities, allProducts }) {
         setAllProductsArray(sortedProducts);
     }
 
+    //Populate the city select options for the particular product of the a parituclar state
     function stateSelectHandler(e) {
         const citiesArray = [];
         allProductsArray.forEach((item) => {
