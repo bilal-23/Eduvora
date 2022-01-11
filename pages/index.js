@@ -1,15 +1,13 @@
-import { useEffect } from 'react';
 import Filter from '../components/Filter';
 import ProductItem from '../components/ProductItem';
 import classes from '../styles/index.module.css';
 
-export default function Home({ products, allProducts, states, cities }) {
-
+export default function Home({ products, allProducts, states, cities, allProductsData }) {
   return (
     <main className={classes.main}>
       <h1 className={classes.heading_mob}>Edvora</h1>
       <p className={classes.subheading_mob}>Products</p>
-      <Filter products={allProducts} states={states} cities={cities} />
+      <Filter products={allProducts} states={states} cities={cities} allProducts={allProductsData} />
       <div className={classes.dashboard}>
         <h1 className={classes.heading}>Edvora</h1>
         <p className={classes.subheading}>Products</p>
@@ -39,6 +37,7 @@ export async function getServerSideProps() {
   const totalProducts = [];
   const states = [];
   const cities = [];
+  const allProducts = [];
   const res = await fetch(`https://assessment-edvora.herokuapp.com`);
   const data = await res.json();
 
@@ -73,12 +72,20 @@ export async function getServerSideProps() {
     }
   }))
 
+  //Extracting all products but removing duplicate one 
+  data.forEach((item => {
+    if (!allProducts.includes(item.product_name)) {
+      allProducts.push(item.product_name);
+    }
+  }))
+
   return {
     props: {
       products: totalProducts,
-      allProducts: data,
+      allProducts: allProducts,
+      allProductsData: data,
       states: states,
-      cities: cities
+      cities: cities,
     }
   }
 }
