@@ -1,8 +1,11 @@
+
 import Filter from '../components/Filter';
-import ProductItem from '../components/ProductItem';
+import ProductRow from '../components/ProductRow';
 import classes from '../styles/index.module.css';
 
 export default function Home({ products, allProducts, states, cities, allProductsData }) {
+
+
   return (
     <main className={classes.main}>
       <h1 className={classes.heading_mob}>Edvora</h1>
@@ -13,18 +16,7 @@ export default function Home({ products, allProducts, states, cities, allProduct
         <p className={classes.subheading}>Products</p>
         {products?.map(((product, index) => {
           return (
-            <div className={classes.products_wrapper} key={index}>
-              <h2>{product.brand}</h2>
-              <div className={classes.product_row}>
-                <div className={classes.product_row_wrapper}>
-                  {product?.products?.map((item, index) => {
-                    return (
-                      <ProductItem key={index} brand={item.brand_name} product={item.product_name} time={item.time} price={item.price} description={item.discription} location={item.address} image={item.image} />
-                    )
-                  })}
-                </div>
-              </div>
-            </div>
+            <ProductRow product={product} key={index} />
           )
         }))}
       </div>

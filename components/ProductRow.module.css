@@ -1,0 +1,83 @@
+
+.products_wrapper{
+    scroll-behavior: smooth;
+    padding: 2rem 0;
+}
+.products_wrapper h2{
+    font-size: 2rem;
+    font-weight: 400;
+    padding-bottom: 1rem;
+    border-bottom: 0.5px solid rgba(255, 255, 255, 0.767);
+    margin-bottom: 2rem;
+}
+.product_row{
+    width: 100%;
+    min-height: 20rem;
+    background: #131313;
+    border-radius: 15px;
+    padding: 2rem 4rem;
+    position: relative;
+}
+
+
+.product_row_wrapper{
+    margin: 0 auto;
+    border-radius: 15px;
+    display: flex;
+    gap: 2rem;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    scroll-behavior: smooth; 
+    -ms-overflow-style: none; /* for Internet Explorer, Edge */
+    scrollbar-width: none; /* for Firefox */
+    overflow-y: scroll; 
+   
+}
+.product_row_wrapper::-webkit-scrollbar {
+    width: 0 !important;
+display: none !important;
+}
+.product_row_wrapper:hover .scroll__button{
+    opacity: 1;
+}
+.scroll__button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    height: auto;
+    width: 3rem;
+    z-index: 3;
+    overflow: hidden;
+    opacity: 0;
+    transition: all 0.3s;
+    cursor: pointer;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .scroll__button > img{
+      width: 100%;
+  }
+  .left__button {
+    border-top-right-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    left: 0;
+  }
+  .right__button {
+    border-top-left-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+    right: 0;
+ 
+  }
+ 
+  @media screen and (hover:none) {
+    .scroll__button {
+        display: none;
+    }
+  }
+  
+@media screen and (max-width:600px) {
+    .product_row{
+        padding: 2rem;
+    }
+}
